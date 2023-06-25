@@ -2,11 +2,11 @@
 
 ## Introduction
 
-The Spell Checker Alfred Workflow allows you to quickly check the spelling of selected text. By selecting the desired text and pressing the hotkey (default: `option(⌥) + s`), the workflow sends a request to the Ginger Software API to retrieve spelling corrections. The corrected text is then replaced with the original selected text.
+The Spell Checker Alfred Workflow allows you to quickly check the spelling of selected text (US English). By selecting the desired text and pressing the hotkey (default: `option(⌥) + s`), the workflow sends a request to the Ginger Software API to retrieve spelling corrections. The corrected text is then replaced with the original selected text.
 
 ## Features
 
-- Fast spell checking for selected text.
+- Fast spell checking for selected text (US English).
 - Customizable hotkey for triggering the spell checking process.
 
 ## Installation
