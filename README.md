@@ -1,1 +1,1 @@
-# alfred-spell-checker
+# Spell Checker Alfred Workflow
