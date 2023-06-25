@@ -11,7 +11,7 @@ The Spell Checker Alfred Workflow allows you to quickly check the spelling of se
 
 ## Installation
 
-1. Download the "Spell Checker" workflow from the [⤓ GitHub]().
+1. Download the "Spell Checker" workflow from the [⤓ GitHub](https://github.com/svenko99/alfred-spell-checker/releases/latest/download/Spell.Checker.alfredworkflow).
 2. Double-click the downloaded file to install it in Alfred.
 
 ## Usage
