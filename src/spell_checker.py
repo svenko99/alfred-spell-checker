@@ -37,4 +37,4 @@ def process_data(text, data):
 if __name__ == "__main__":
     ALFRED_QUERY = " ".join(sys.argv[1:])
     data = get_spell_check(ALFRED_QUERY)
-    print(process_data(ALFRED_QUERY, data))
+    sys.stdout.write(process_data(ALFRED_QUERY, data))
