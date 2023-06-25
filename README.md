@@ -6,7 +6,7 @@ The Spell Checker Alfred Workflow allows you to quickly check the spelling of se
 
 ## Features
 
-- Instant spell checking for selected text in Alfred.
+- Fast spell checking for selected text.
 - Customizable hotkey for triggering the spell checking process.
 
 ## Installation
