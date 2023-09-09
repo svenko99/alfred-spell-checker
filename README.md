@@ -19,6 +19,10 @@ The Spell Checker Alfred Workflow allows you to quickly check the spelling of se
   <img src="https://github.com/svenko99/alfred-spell-checker/blob/main/images/tutorial2.png">
 </details>
 
+## Limitations
+
+- The workflow only supoorts 400 characters per request. If the selected text is longer than 400 characters, the workflow will only check the first 400 characters.
+
 ## Usage
 
 1. Select the text you want to check the spelling for.

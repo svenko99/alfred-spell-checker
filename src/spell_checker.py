@@ -1,40 +1,46 @@
-import json
-import sys
 import http.client
-from urllib.parse import quote
+import sys
+import gzip
+import json
 
 
-def get_spell_check(text):
-    conn = http.client.HTTPSConnection("services.gingersoftware.com")
-
-    conn.request(
-        "GET",
-        "/Ginger/correct/jsonSecured/GingerTheTextFull?clientVersion=2.0&lang=US&text="
-        + quote(text)
-        + "&apiKey=6ae0c3a0-afdc-4532-a810-82ded0054236",
+def spell_check(text):
+    conn = http.client.HTTPSConnection("orthographe.reverso.net")
+    payload = json.dumps(
+        {
+            "englishDialect": "indifferent",
+            "autoReplace": True,
+            "getCorrectionDetails": True,
+            "interfaceLanguage": "en",
+            "locale": "",
+            "language": "eng",
+            "text": text,
+            "originalText": "",
+            "origin": "ginger.web",
+            "isHtml": False,
+            "IsUserPremium": False,
+        }
     )
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/117.0",
+        "Accept": "text/json",
+        "Accept-Language": "en-GB,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Type": "application/*+json",
+        "Connection": "keep-alive",
+    }
 
+    conn.request("POST", "/api/v1/Spelling/", payload, headers)
     res = conn.getresponse()
     data = res.read()
     conn.close()
-    return json.loads(data.decode("utf-8"))
 
+    decoded_data = gzip.decompress(data).decode("utf-8")
+    json_data = json.loads(decoded_data)
 
-def process_data(text, data):
-    result = text
-
-    for suggestion in reversed(data["Corrections"]):
-        start = suggestion["From"]
-        end = suggestion["To"]
-
-        if suggestion["Suggestions"]:
-            suggest = suggestion["Suggestions"][0]
-            result = result[:start] + suggest["Text"] + result[end + 1 :]
-
-    return result
+    return json_data["text"]
 
 
 if __name__ == "__main__":
     ALFRED_QUERY = " ".join(sys.argv[1:])
-    data = get_spell_check(ALFRED_QUERY)
-    sys.stdout.write(process_data(ALFRED_QUERY, data))
+    sys.stdout.write(spell_check(ALFRED_QUERY))
