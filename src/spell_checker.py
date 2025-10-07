@@ -1,6 +1,5 @@
 import http.client
 import sys
-import gzip
 import json
 
 
@@ -18,7 +17,7 @@ def spell_check(text):
             "originalText": "",
             "origin": "ginger.web",
             "isHtml": False,
-            "IsUserPremium": False,
+            "IsUserPremium": True,
         }
     )
     headers = {
@@ -34,9 +33,7 @@ def spell_check(text):
     res = conn.getresponse()
     data = res.read()
     conn.close()
-
-    decoded_data = gzip.decompress(data).decode("utf-8")
-    json_data = json.loads(decoded_data)
+    json_data = json.loads(data)
 
     return json_data["text"]
 
